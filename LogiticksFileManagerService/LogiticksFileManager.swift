@@ -5,9 +5,10 @@
 //  Created by Logiticks LLP on 21/05/21.
 //
 public struct LogiticksFileManager {
-    public let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     //Add default path
-    
+    public init() {
+    }
     public func isFileExist(atPath:String) -> Bool{
         return FileManager.default.fileExists(atPath: atPath)
     }
@@ -19,7 +20,7 @@ public struct LogiticksFileManager {
         return folderPath.appendingPathComponent(fileName)
     }
     public func appendPathToDocumentDirectory(folderName:String) -> URL{
-        return documentDirectory.appendingPathComponent(folderName)
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(folderName)
     }
     public func getFilePathURLString(folderPath:URL,fileName:String) -> String{
         let filePath = appendPath(folderPath: folderPath, fileName: fileName)
